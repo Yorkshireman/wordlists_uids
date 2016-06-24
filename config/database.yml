@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: wordlists_uids_development
+
+test:
+  <<: *default
+  database: wordlists_uids_test
+
+production:
+  <<: *default
+  database: wordlists_uids_production
+  username: wordlists_uids
+  password: <%= ENV['WORDLISTS_UIDS_DATABASE_PASSWORD'] %>
