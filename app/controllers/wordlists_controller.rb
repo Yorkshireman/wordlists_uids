@@ -1,0 +1,2 @@
+class WordlistsController < ApplicationController
+end
