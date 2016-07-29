@@ -1,0 +1,9 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'Guardfile'
+    - 'db/schema.rb'
+    - 'bin/spring'
+
+Documentation:
+  Enabled: false

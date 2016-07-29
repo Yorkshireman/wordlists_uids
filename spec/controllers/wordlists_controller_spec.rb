@@ -15,8 +15,8 @@ RSpec.describe WordlistsController, type: :controller do
   end
 
   it 'client provided UUIDs are accepted while finding saved Wordlists' do
-    wordlist = Wordlist.create!(title: 'Test Wordlist', uuid: my_uuid)
-    get :show, { id: my_uuid }
+    Wordlist.create!(title: 'Test Wordlist', uuid: my_uuid)
+    get :show, id: my_uuid
     expect(response.status).to eq 200
   end
 end
