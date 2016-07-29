@@ -6,12 +6,11 @@ class Wordlist < ActiveRecord::Base
   private
 
   def ensure_uuid_generation
-    self.uuid ||= SecureRandom.uuid if self.new_record?
+    self.uuid ||= SecureRandom.uuid if new_record?
   end
 
   def uuid_not_changed
-    if self.uuid_changed? and self.persisted?
-      self.errors.add(:uuid, "can't be updated")
-    end
+    return unless uuid_changed? && persisted?
+    errors.add(:uuid, "can't be updated")
   end
 end
