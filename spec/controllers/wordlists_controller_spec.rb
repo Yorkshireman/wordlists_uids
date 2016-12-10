@@ -35,11 +35,11 @@ RSpec.describe WordlistsController, type: :controller do
     end
 
     it 'does not return created_at' do
-      expect(response_body.has_key?('created_at')).to be false
+      expect(response_body.key?('created_at')).to be false
     end
 
     it 'does not return updated_at' do
-      expect(response_body.has_key?('updated_at')).to be false
+      expect(response_body.key?('updated_at')).to be false
     end
   end
 end

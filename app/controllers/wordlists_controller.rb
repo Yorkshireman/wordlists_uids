@@ -1,5 +1,5 @@
 class WordlistsController < ApplicationController
-  skip_before_filter  :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token
 
   def create
     @wordlist = Wordlist.create!(wordlist_params)
