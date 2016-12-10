@@ -14,9 +14,32 @@ RSpec.describe WordlistsController, type: :controller do
     expect(response.status).to eq 200
   end
 
-  it 'client provided UUIDs are accepted while finding saved Wordlists' do
-    Wordlist.create!(title: 'Test Wordlist', uuid: my_uuid)
-    get :show, id: my_uuid
-    expect(response.status).to eq 200
+  describe '/show' do
+    let(:response_body) { JSON.parse(response.body) }
+
+    before :each do
+      Wordlist.create!(title: 'Test Wordlist', uuid: my_uuid)
+      get :show, id: my_uuid
+    end
+
+    it 'client provided UUIDs are accepted while finding saved Wordlists' do
+      expect(response.status).to eq 200
+    end
+
+    it 'returns wordlist title' do
+      expect(response_body['title']).to eq 'Test Wordlist'
+    end
+
+    it 'returns wordlist uuid' do
+      expect(response_body['uuid']).to eq my_uuid
+    end
+
+    it 'does not return created_at' do
+      expect(response_body.has_key?('created_at')).to be false
+    end
+
+    it 'does not return updated_at' do
+      expect(response_body.has_key?('updated_at')).to be false
+    end
   end
 end

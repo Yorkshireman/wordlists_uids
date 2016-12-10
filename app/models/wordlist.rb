@@ -3,6 +3,10 @@ class Wordlist < ActiveRecord::Base
   validate :uuid_not_changed
   self.primary_key = 'uuid'
 
+  def as_json(options={})
+    super(only: [:title, :uuid])
+  end
+
   private
 
   def ensure_uuid_generation
@@ -13,4 +17,5 @@ class Wordlist < ActiveRecord::Base
     return unless uuid_changed? && persisted?
     errors.add(:uuid, "can't be updated")
   end
+
 end

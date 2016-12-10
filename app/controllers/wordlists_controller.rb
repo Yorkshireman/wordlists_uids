@@ -1,4 +1,6 @@
 class WordlistsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def create
     @wordlist = Wordlist.create!(wordlist_params)
     render nothing: true
@@ -6,7 +8,7 @@ class WordlistsController < ApplicationController
 
   def show
     @wordlist = Wordlist.find(params[:id])
-    render nothing: :true
+    render json: @wordlist
   end
 
   private
