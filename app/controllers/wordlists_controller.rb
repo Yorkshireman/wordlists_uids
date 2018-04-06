@@ -1,7 +1,7 @@
 class WordlistsController < ApplicationController
   def create
     @wordlist = Wordlist.create!(wordlist_params)
-    render nothing: true
+    head :ok
   end
 
   def show
